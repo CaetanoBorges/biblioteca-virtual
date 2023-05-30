@@ -1,0 +1,39 @@
+*{margin:0;padding:0;}
+.background{position:fixed;top:0;left:0;width:100%;height:100vh;}
+.corpo{width:800px;display:block;margin:20px auto 0 auto;position:relative;}
+.top-action{width:fit-content;padding:10px;position:absolute;top:0;right:0;display:flex;align-items:center;justify-content:space-between;font-size:14px}
+.top-action img {width:25px;margin-right:20px}
+.span{width:fit-content;text-align:center;background-color:#D07746;padding:5px;text-decoration:none;color:black;margin-left:15px;border-radius:5px;}
+.banner{width:100%;display:block;}
+
+.pesquisar{width:100%;padding:5%;border:0.2px solid #d9d9d940;margin:50px 0;background: #fff;}
+.pesquisar input{width:70%;border:1px solid #D07746;text-align:center;border-radius:5px;display:block;margin:0 auto;height:30px;}
+.pesquisar button{width:fit-content;padding:0 1%;border:1px solid #D07746;border-radius:5px;background:none;color:#D07746;display:block;margin:10px auto 0 auto;height:30px;cursor:pointer}
+
+.btn-principal{width:100%;display:flex;align-items:center;justify-content:space-between;height:30px;cursor:pointer;margin-bottom:20px;}
+.btn-principal:hover{color:white}
+.btn-principal .pequena{width:20%;text-align:center;height:fit-content;padding:3% 0;}
+.btn-principal .grande{width:80%;padding:3% 0;padding-left:4%;height:fit-content;}
+
+.bg-leaf{background-color:#8DD298 !important;}
+.bg-yel{background-color:#DED89F !important;}
+.bg-red{background-color:#D8C1C1 !important;}
+.bg-gray{background-color:#d9d9d9 !important;}
+.bg-blu{background-color:#0099FF38 !important;}
+.bg-lar{background-color:#D07746 !important;}
+
+
+.rv-btn-submit{background-color:#D07746 !important;border-radius:5px;border:none;display:block;margin:10px auto 0 auto;color:black;}
+.rv-form-alterar{display:block;width: 70%; margin: 0 auto;}
+
+.a-clean{text-decoration:none;color:black;}
+
+.log{display:flex;align-items:center;justify-content:space-between;width: 90%;}
+.cursor{cursor:pointer;}
+.home-buttons{width:48%;display:inline-block;}
+.home-images{width:48%;float:right;}
+@media screen and (max-width: 500px){
+    .corpo{width:90%;display:block;margin:20px auto 0 auto;position:relative;padding: 5%;}
+    .home-buttons{width:100%;display:block;}
+    .home-images{width:100%;float:none;display: block;}
+}
