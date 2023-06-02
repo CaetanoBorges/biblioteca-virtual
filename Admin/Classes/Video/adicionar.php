@@ -19,7 +19,7 @@ if(isset($_POST['titulo']) and isset($_POST['autor']) and isset($_POST['categori
     
    
     $nomeVideo= time().$_FILES['video']['name'];
-    move_uploaded_file($_FILES['video']['tmp_name'],"files/".$nomeVideo);
+    move_uploaded_file($_FILES['video']['tmp_name'],"arquivo/".$nomeVideo);
 
     
 

@@ -23,6 +23,10 @@ if (isset($_SESSION['bibliotecavirtual-user'])) {
 
     $Cat = new Categoria(Funcoes::conexao());
     $Categoria = $Cat->get($audio["categoria"]);
+
+    include("Admin/Classes/LogAudio.php");
+    $log = new LogAudio(Funcoes::conexao());
+    $log->adicionar($_GET["q"],($_SESSION['user']['metadados'][0]),"0",time());
 	    ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -52,7 +56,17 @@ if (isset($_SESSION['bibliotecavirtual-user'])) {
             </div>
         </div>
         <br><br><br>
-        <audio src="Admin/Classes/Audio/files/<?php echo $audio["audio"]?>" style="width:100%;display:block;" controls></audio>
+        <audio src="Admin/Classes/Audio/arquivo/<?php echo $audio["audio"]?>" style="width:100%;display:block;" controls></audio>
+        <div class="caption">
+            <p class="info">Data</p>
+            <p class="detail"><?php echo quando($audio['quando']) ?></p>
+            <p class="info">Autor</p>
+            <p class="detail"><?php echo $audio['autor'] ?></p>
+            <p class="info">Categoria</p>
+            <p class="detail"><?php echo $Categoria["nome"] ?></p>
+            <p class="info">Descricao</p>
+            <p class="detail"><?php echo $audio['descricao'] ?></p>
+        </div>
 
         <br><br><br><br><br><br><br><br>
         

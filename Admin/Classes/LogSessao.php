@@ -13,7 +13,10 @@ class LogSessao{
         $query=$this->conn->prepare("SELECT * FROM log_sessao WHERE quem = ?");
         $query->bindValue(1, $id);
         $query->execute();
-        return $query->fetchAll();
+        
+        $res = $query->fetchAll();
+        rsort($res);
+        return $res;
     }
 
 

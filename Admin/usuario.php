@@ -1,7 +1,12 @@
 <?php
 session_start();
-
+error_reporting(0);
 if (isset($_SESSION['bibliotecavirtual-admin'])) {
+    function quando($quando){
+        date_default_timezone_set("Africa/Luanda");
+        return date("d-m-Y H:i:s A",$quando);
+    }
+
     if(isset($_GET["tipo"]) AND $_GET["tipo"] == "passe"){
         include("Classes/Funcoes.php");
         include("Classes/Usuario.php");
@@ -24,10 +29,39 @@ if (isset($_SESSION['bibliotecavirtual-admin'])) {
 	# mostra a pagina
     include("Classes/Funcoes.php");
     include("Classes/Usuario.php");
+    include("Classes/Livro.php");
+    include("Classes/Audio.php");
+    include("Classes/Video.php");
+    include("Classes/LogSessao.php");
+    include("Classes/LogAudio.php");
+    include("Classes/LogVideo.php");
+    include("Classes/LogLivro.php");
 
     $Usuario = new Usuario(Funcoes::conexao());
+    $Sessao = new LogSessao(Funcoes::conexao());
+    $Audio = new LogAudio(Funcoes::conexao());
+    $Video = new LogVideo(Funcoes::conexao());
+    $Livro = new LogLivro(Funcoes::conexao());
+
     $User = $Usuario->get($_GET["q"]);
-	    ?>
+
+
+    $logAudio = $Audio->get($User['identificador']);
+    $logAudioShow = array_chunk($logAudio, 10);
+
+    $logVideo = $Video->get($User['identificador']);
+    $logVideoShow = array_chunk($logVideo, 10);
+
+    $logLivro = $Livro->get($User['identificador']);
+    $logLivroShow = array_chunk($logLivro, 10);
+
+    $logSessao = $Sessao->get($User['identificador']);
+    $logSessaoShow = array_chunk($logSessao, 10);
+
+    $Liv = new Livro(Funcoes::conexao());
+    $Vid = new Video(Funcoes::conexao());
+    $Aud = new Audio(Funcoes::conexao());
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,7 +71,7 @@ if (isset($_SESSION['bibliotecavirtual-admin'])) {
     <link rel="stylesheet" href="_arq/bootstrap/css/bootstrap.min.css">
     <script src="_arq/bootstrap/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="_arq/one.css">
-    <title>Home</title>
+    <title>USUÁRIO</title>
 </head>
 <body>
     <style>
@@ -166,7 +200,7 @@ if (isset($_SESSION['bibliotecavirtual-admin'])) {
             <a href="" class="a-clean"  data-bs-toggle="collapse" data-bs-target="#sessoesModal">
                 <div class="btn-principal">
                     <div class="pequena bg-red">
-                        345
+                        <?php echo count($logSessao) ?>
                     </div>
                     <div class="grande bg-gray">
                         SESSÕES
@@ -176,32 +210,13 @@ if (isset($_SESSION['bibliotecavirtual-admin'])) {
             <!-- Dados COLLAPSE -->
             <div class="collapse fade" id="sessoesModal" tabindex="-1" aria-labelledby="sessoesModalLabel" aria-hidden="true">
                 <ul style="">
-                    <li data-bs-toggle="modal" data-bs-target="#sessoesModal12" class="cursor">12-12-2023 15h11m07s</li>
-                    <!-- Modal -->
-                    <div class="modal fade" id="sessoesModal12" tabindex="-1" aria-labelledby="sessoesModal12Label" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content modal-sm">
-                                                    
-                                    <button type="button" data-bs-dismiss="modal"  class="fecha-modal"></button>
-                                    <br><br>
-                                    <h5 style="margin-top:50px;text-align:center">12-12-2023 15h11m07s</h5>
-                                <br><br>
-                                <div class="modal-body">
-                                    <ul style="">
-                                        <li class="log"><span>* 12-12-2023 15h11m07s</span><span>Fez isso</span></li>
-                                        <li class="log"><span>* 12-12-2023 15h11m07s</span><span>Fez isso</span></li>
-                                        <li class="log"><span>* 12-12-2023 15h11m07s</span><span>Fez isso</span></li>
-                                        <li class="log"><span>* 12-12-2023 15h11m07s</span><span>Fez isso</span></li>
-                                        <li class="log"><span>* 12-12-2023 15h11m07s</span><span>Fez isso</span></li>
-                                    </ul>
-                                </div>
-                            <br><br><br>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- FIM MODAL -->
-                    <li>12-12-2023 15h11m07s</li>
-                    <li>12-12-2023 15h11m07s</li>
+                    <?php
+                        foreach($logSessaoShow[0] as $show){ 
+                            ?>
+                            <li><?php echo quando($show['momento']) ?></li>
+                       <?php 
+                       }
+                    ?>
                 </ul>
             </div>
             <!-- FIM MODAL -->
@@ -211,7 +226,7 @@ if (isset($_SESSION['bibliotecavirtual-admin'])) {
             <a href="" class="a-clean"  data-bs-toggle="collapse" data-bs-target="#livroModal">    
                 <div class="btn-principal">
                     <div class="pequena bg-red">
-                        456
+                        <?php echo count($logLivro) ?>
                     </div>
                     <div class="grande bg-gray">
                         LIVROS
@@ -221,32 +236,15 @@ if (isset($_SESSION['bibliotecavirtual-admin'])) {
             <!-- Modal -->
             <div class="collapse fade" id="livroModal" tabindex="-1" aria-labelledby="livroModalLabel" aria-hidden="true">
                 <ul style="">
-                    <li data-bs-toggle="modal" data-bs-target="#livroModal12" class="cursor">12-12-2023 15h11m07s</li>
-                    <!-- Modal -->
-                    <div class="modal fade" id="livroModal12" tabindex="-1" aria-labelledby="livroModal12Label" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content modal-sm">
-                                                    
-                                    <button type="button" data-bs-dismiss="modal"  class="fecha-modal"></button>
-                                    <br><br>
-                                    <h5 style="margin-top:50px;text-align:center">12-12-2023 15h11m07s</h5>
-                                <br><br>
-                                <div class="modal-body">
-                                    <ul style="">
-                                        <li class="log"><span>* 12-12-2023 15h11m07s</span><span>Fez isso</span></li>
-                                        <li class="log"><span>* 12-12-2023 15h11m07s</span><span>Fez isso</span></li>
-                                        <li class="log"><span>* 12-12-2023 15h11m07s</span><span>Fez isso</span></li>
-                                        <li class="log"><span>* 12-12-2023 15h11m07s</span><span>Fez isso</span></li>
-                                        <li class="log"><span>* 12-12-2023 15h11m07s</span><span>Fez isso</span></li>
-                                    </ul>
-                                </div>
-                            <br><br><br>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- FIM MODAL -->
-                    <li>12-12-2023 15h11m07s</li>
-                    <li>12-12-2023 15h11m07s</li>
+                    
+                    <?php
+                        foreach($logLivroShow[0] as $show){ 
+                            $nome = $Liv->get($show['livro'])['titulo'];
+                            ?>
+                            <li><?php echo quando($show['quando']).' :: '.$nome ?></li>
+                       <?php 
+                       }
+                    ?>
                 </ul>
             </div>
             <!-- FIM MODAL -->
@@ -256,7 +254,7 @@ if (isset($_SESSION['bibliotecavirtual-admin'])) {
             <a href="" class="a-clean" data-bs-toggle="collapse" data-bs-target="#videoModal">
                 <div class="btn-principal">
                     <div class="pequena bg-red">
-                        45
+                        <?php echo count($logVideo) ?>
                     </div>
                     <div class="grande bg-gray">
                         VÍDEOS
@@ -266,15 +264,48 @@ if (isset($_SESSION['bibliotecavirtual-admin'])) {
             <!-- Modal -->
             <div class="collapse fade" id="videoModal" tabindex="-1" aria-labelledby="videoModalLabel" aria-hidden="true">
                 <ul style="">
-                    <li><span>12-12-2023 15h11m07s</span></li>
-                    <li><span>12-12-2023 15h11m07s</span></li>
-                    <li><span>12-12-2023 15h11m07s</span></li>
-                    <li><span>12-12-2023 15h11m07s</span></li>
-                    <li><span>12-12-2023 15h11m07s</span></li>
+                    
+                    <?php
+                        foreach($logVideoShow[0] as $show){ 
+                            $nome = $Vid->get($show['video'])['titulo'];
+                            ?>
+                            <li><?php echo quando($show['quando']).' :: '.$nome ?></li>
+                       <?php 
+                       }
+                    ?>
                 </ul>
             </div>
             <!-- FIM MODAL -->
-            <!-- FIM PALAVRAPASSE -->
+            <!-- FIM VIDEOAULA -->
+
+
+            <!-- VIDEOAULA -->
+            <a href="" class="a-clean" data-bs-toggle="collapse" data-bs-target="#audiobook">
+                <div class="btn-principal">
+                    <div class="pequena bg-red">
+                        <?php echo count($logAudio) ?>
+                    </div>
+                    <div class="grande bg-gray">
+                        AUDIOBOOKS
+                    </div>
+                </div>
+            </a>
+            <!-- Modal -->
+            <div class="collapse fade" id="audiobook" tabindex="-1" aria-labelledby="audiobookLabel" aria-hidden="true">
+                <ul style="">
+                    
+                    <?php
+                        foreach($logAudioShow[0] as $show){ 
+                            $nome = $Liv->get($show['audio'])['titulo'];
+                            ?>
+                            <li><?php echo quando($show['quando']).' :: '.$nome ?></li>
+                       <?php 
+                       }
+                    ?>
+                </ul>
+            </div>
+            <!-- FIM MODAL -->
+            <!-- FIM VIDEOAULA -->
 
         </div>
 

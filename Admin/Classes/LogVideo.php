@@ -10,20 +10,23 @@ class LogVideo{
 
     public function get(string $id) : array{
         
-        $query=$this->conn->prepare("SELECT * FROM log_video WHERE usuario = ?");
+        $query=$this->conn->prepare("SELECT * FROM log_video WHERE quem = ?");
         $query->bindValue(1, $id);
         $query->execute();
-        return $query->fetchAll();
+        
+        $res = $query->fetchAll();
+        rsort($res);
+        return $res;
     }
 
 
-    public function adicionar(string $video, string $usuario, string $pagina , string $quando) : bool {
+    public function adicionar(string $video, string $usuario, string $pagina , int $quando) : bool {
 
-        $query=$this->conn->prepare("INSERT INTO log_video (video, usuario, pagina, quando) VALUES (?, ?, ?, ?)");
+        $query=$this->conn->prepare("INSERT INTO log_video (video, quem, pagina, quando) VALUES (?, ?, ?, ?)");
         $query->bindValue(1, $video);
         $query->bindValue(2, $usuario);
         $query->bindValue(3, $pagina);
-        $query->bindValue(5, $quando);
+        $query->bindValue(4, $quando);
         $query->execute();
 
         return true;

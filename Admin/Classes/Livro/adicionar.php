@@ -17,10 +17,10 @@ if(isset($_POST['titulo']) and isset($_POST['autor']) and isset($_POST['categori
 
     
     $nomeCapa= time().$_FILES['capa']['name'];
-    move_uploaded_file($_FILES['capa']['tmp_name'],"files/".$nomeCapa);
+    move_uploaded_file($_FILES['capa']['tmp_name'],"arquivo/".$nomeCapa);
 
     $nomePDF= time().$_FILES['pdf']['name'];
-    move_uploaded_file($_FILES['pdf']['tmp_name'],"files/".$nomePDF);
+    move_uploaded_file($_FILES['pdf']['tmp_name'],"arquivo/".$nomePDF);
 
     
 

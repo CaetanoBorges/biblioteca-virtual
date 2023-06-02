@@ -52,7 +52,7 @@ if (isset($_SESSION['bibliotecavirtual-user'])) {
             
                 <!--<object data="Admin/Classes/Livro/files/<?php echo $livro['pdf'] ?>" type="application/pdf" id="pdf">-->
                 <br>
-              <iframe src = "ViewerJS/#../Admin/Classes/Livro/files/<?php echo $livro['pdf'] ?>" id="pdf" allowfullscreen webkitallowfullscreen ></iframe>
+              <iframe src = "ViewerJS/#../Admin/Classes/Livro/arquivo/<?php echo $livro['pdf'] ?>" id="pdf" allowfullscreen webkitallowfullscreen ></iframe>
 
             
         </div>

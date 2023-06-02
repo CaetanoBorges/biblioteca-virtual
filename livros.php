@@ -31,6 +31,7 @@ if (isset($_SESSION['bibliotecavirtual-user'])) {
 
         <br><br><br><br><br><br><br><br>
         <a href="home.php" class="a-clean">
+            <?php  echo ($_SESSION['user']['metadados'][0]); ?>
             <div class="btn-principal">
                 <div class="pequena bg-red">
                     <?php echo count($Liv); ?>

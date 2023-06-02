@@ -23,6 +23,10 @@ if (isset($_SESSION['bibliotecavirtual-user'])) {
 
     $Cat = new Categoria(Funcoes::conexao());
     $Categoria = $Cat->get($video["categoria"]);
+
+    include("Admin/Classes/LogVideo.php");
+    $log = new LogVideo(Funcoes::conexao());
+    $log->adicionar($_GET["q"],($_SESSION['user']['metadados'][0]),"0",time());
 	    ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -37,9 +41,7 @@ if (isset($_SESSION['bibliotecavirtual-user'])) {
 </head>
 <body>
     <style>
-        .fecha-modal{width:20px;height:20px;border-radius:50%;background-color:#D07746;border:none;position:absolute;top:10px;right:10px;}
-        .info{font-size: 12px;font-weight: bold;line-height: 13px;margin: 0;}
-        .detail{font-size: 14px;line-height: 15px;margin: 0;}
+        
     </style><img src="Admin/_assets/back.jpg" class="background">
     <div class="corpo">
         <?php include("Admin/_partes/top.php"); ?>
@@ -54,15 +56,17 @@ if (isset($_SESSION['bibliotecavirtual-user'])) {
             </div>
         </div>
         <br><br><br>
-        <video src="Admin/Classes/Video/files/<?php echo $video["video"]?>" style="width:100%;display:block;" controls></video>
-        <p class="info">Descricao</p>
-        <p class="detail"><?php echo $video['descricao'] ?></p>
-        <p class="info">Autor</p>
-        <p class="detail"><?php echo $video['autor'] ?></p>
-        <p class="info">Data</p>
-        <p class="detail"><?php echo quando($video['quando']) ?></p>
-        <p class="info">Categoria</p>
-        <p class="detail"><?php echo $Categoria["nome"] ?></p>
+        <video src="Admin/Classes/Video/arquivo/<?php echo $video["video"]?>" style="width:100%;display:block;" controls></video>
+        <div class="caption">
+            <p class="info">Data</p>
+            <p class="detail"><?php echo quando($video['quando']) ?></p>
+            <p class="info">Autor</p>
+            <p class="detail"><?php echo $video['autor'] ?></p>
+            <p class="info">Categoria</p>
+            <p class="detail"><?php echo $Categoria["nome"] ?></p>
+            <p class="info">Descricao</p>
+            <p class="detail"><?php echo $video['descricao'] ?></p>
+        </div>
         <br><br><br><br><br><br><br><br>
         
         <br><br><br><br><br><br><br><br>

@@ -83,35 +83,60 @@ class Acessos{
     }
     public function registarAcesso(){
             
-            $dia=date('d');
             $mes=date('F');
             $ano=date('Y');
-            $query=$this->conn->prepare("SELECT * FROM acessos WHERE dia = ? AND mes = ? AND ano = ? ");
-            $query->bindValue(1,$dia);
-            $query->bindValue(2,$mes);
-            $query->bindValue(3,$ano);
+            $query=$this->conn->prepare("SELECT * FROM acessos WHERE mes = ? AND ano = ? ");
+            $query->bindValue(1,$mes);
+            $query->bindValue(2,$ano);
             $query->execute();
             $res = $query->fetchAll();
             $qtd = count($res);
 
             if($qtd > 0 ){
                 $mais=$res[0]['acesso'] + 1;
-                $query=$this->conn->prepare("UPDATE acessos SET acesso = ? WHERE dia = ? AND mes = ? AND ano = ?");
+                $query=$this->conn->prepare("UPDATE acessos SET acesso = ? WHERE  mes = ? AND ano = ?");
                 $query->bindValue(1,$mais);
-                $query->bindValue(2,$dia);
-                $query->bindValue(3,$mes);
-                $query->bindValue(4,$ano);
+                $query->bindValue(2,$mes);
+                $query->bindValue(3,$ano);
                 $query->execute();
             }else{
-                $query=$this->conn->prepare("INSERT INTO acessos (acesso, dia, mes, ano) VALUES(?, ?, ?, ?)");
+                $query=$this->conn->prepare("INSERT INTO acessos (acesso, mes, ano) VALUES(?, ?, ?, ?)");
                 $query->bindValue(1,'1');
-                $query->bindValue(2,$dia);
-                $query->bindValue(3,$mes);
-                $query->bindValue(4,$ano);
+                $query->bindValue(2,$mes);
+                $query->bindValue(3,$ano);
                 $query->execute();
             }
             
     }
+
+
+
+        public function visitas($op){
+            $query=$this->conn->prepare("SELECT * FROM acessos WHERE ano = ? ");
+            $query->bindValue(1,$op);
+            $query->execute();
+            return $query->fetchAll();
+        }
+        public function visitas_ano($op){
+            $query=$this->conn->prepare("SELECT * FROM acessos WHERE ano = ? ");
+            $query->bindValue(1,$op);
+            $query->execute();
+            $res = $query->fetchAll();
+            $t=0;
+            foreach($res as $r){
+                $t+=$r['acesso'];
+            }
+            return $t;
+            
+        }
+        public function visitas_mes($mes, $ano){
+            $query=$this->conn->prepare("SELECT * FROM acessos WHERE mes = ? AND ano = ? GROUP BY mes, ano");
+            $query->bindValue(1,$mes);
+            $query->bindValue(2,$ano);
+            $query->execute();
+            $res = $query->fetchAll();
+            return $res;
+        }
 }
 
 ?>

@@ -56,7 +56,7 @@ if (isset($_SESSION['bibliotecavirtual-user'])) {
         <?php include("Admin/_partes/top.php"); ?>
 
         <br><br><br><br><br><br><br><br>
-        <ul id="Slider">
+        <ul id="Slider"> 
                 <li>
                     <img src="Admin/_assets/1.png" class="banner">
                 </li>

@@ -23,7 +23,7 @@ if(isset($_POST['email']) and isset($_POST['passe'])){
         
         session_start();
         $_SESSION['bibliotecavirtual-user'] = true;
-        $_SESSION["user"]['metadata'] = $metadata;
+        $_SESSION["user"]['metadados'] = $metadata;
         header('Location: ../../../index.php');
 
     }else{

@@ -10,6 +10,9 @@ if (isset($_SESSION['bibliotecavirtual-admin'])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="_assets/jquery.js"></script>
+    <script src="_assets/lightslider.js"></script>
+    <link rel="stylesheet" href="_assets/lightslider.css">
     <link rel="stylesheet" href="_arq/bootstrap/css/bootstrap.min.css">
     <script src="_arq/bootstrap/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="_arq/one.css">
@@ -50,7 +53,17 @@ if (isset($_SESSION['bibliotecavirtual-admin'])) {
         <?php include("_partes/top.php"); ?>
 
         <br><br><br><br><br><br><br><br>
-        <img src="_assets/banner.png" class="banner">
+        <ul id="Slider"> 
+                <li>
+                    <img src="_assets/1.png" class="banner">
+                </li>
+                <li>
+                    <img src="_assets/2.png" class="banner">
+                </li>
+                <li>
+                    <img src="_assets/3.png" class="banner">
+                </li>
+            </ul>
 
         <?php include("_partes/pesquisar.php"); ?>
 
@@ -163,21 +176,44 @@ if (isset($_SESSION['bibliotecavirtual-admin'])) {
 
         <br><br><br><br><br><br><br><br>
         <div style="width:48%;display:inline-block;"> 
-            <div class="btn-principal">
-                <div class="pequena bg-blu">
-                    <?php echo $acesso->acessosParciais() ?>
+            <a href="acessos.php" class="a-clean">
+                <div class="btn-principal">
+                    <div class="pequena bg-blu">
+                        <?php echo $acesso->acessosParciais() ?>
+                    </div>
+                    <div class="grande bg-gray">
+                        ACESSOS
+                    </div>
                 </div>
-                <div class="grande bg-gray">
-                    ACESSOS
-                </div>
-            </div>
+            </a>
         </div>
+        
         <br><br><br><br><br><br><br><br>
     </div>
 
     <?php include("_partes/pes.php"); ?>
 
-
+    <script type="text/javascript">
+                $(document).ready(function() {
+                    
+                    $('#Slider').lightSlider({
+                        gallery: false,
+                        item: 1,
+                        speed: 1200,
+                        loop: true,
+                        keyPress: true,
+                        auto:true,
+                        controls:true,
+                        pager: false,
+                        pauseOnHover: true,
+                        pause:4000,
+                        adaptiveHeight: true,
+                        onSliderLoad: function() {
+                            $('#Slider').removeClass('cS-hidden');
+                        }
+                    }).css("z-index","3");
+                });
+            </script>
 </body>
 </html>
 <?php 

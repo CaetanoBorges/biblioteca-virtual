@@ -13,7 +13,10 @@ class LogPasse{
         $query=$this->conn->prepare("SELECT * FROM log_passe WHERE quem = ?");
         $query->bindValue(1, $email);
         $query->execute();
-        return $query->fetchAll();
+        
+        $res = $query->fetchAll();
+        rsort($res);
+        return $res;
     }
 
 

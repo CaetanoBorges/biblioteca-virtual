@@ -22,7 +22,10 @@ if (isset($_SESSION['bibliotecavirtual-user'])) {
 
     $Cat = new Categoria(Funcoes::conexao());
     $Categoria = $Cat->get($livro["categoria"]);
-
+    
+    include("Admin/Classes/LogLivro.php");
+    $log = new LogLivro(Funcoes::conexao());
+    $log->adicionar($_GET["q"],($_SESSION['user']['metadados'][0]),"0",time());
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -52,7 +55,7 @@ if (isset($_SESSION['bibliotecavirtual-user'])) {
             
                 <!--<object data="Admin/Classes/Livro/files/<?php echo $livro['pdf'] ?>" type="application/pdf" id="pdf">-->
                 <br>
-              <iframe src = "ViewerJS/#../Admin/Classes/Livro/files/<?php echo $livro['pdf'] ?>" id="pdf" allowfullscreen webkitallowfullscreen ></iframe>
+              <iframe src = "ViewerJS/#../Admin/Classes/Livro/arquivo/<?php echo $livro['pdf'] ?>" id="pdf" allowfullscreen webkitallowfullscreen ></iframe>
 
             
         </div>
