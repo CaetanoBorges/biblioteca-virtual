@@ -175,7 +175,7 @@ if (isset($_SESSION['bibliotecavirtual-user'])) {
             </a>
             <!-- Dados COLLAPSE -->
             <div class="collapse fade" id="sessoesModal" tabindex="-1" aria-labelledby="sessoesModalLabel" aria-hidden="true">
-                <ul style="">
+                <ul>
                     <li data-bs-toggle="modal" data-bs-target="#sessoesModal12" class="cursor">12-12-2023 15h11m07s</li>
                     <!-- Modal -->
                     <div class="modal fade" id="sessoesModal12" tabindex="-1" aria-labelledby="sessoesModal12Label" aria-hidden="true">
@@ -187,7 +187,7 @@ if (isset($_SESSION['bibliotecavirtual-user'])) {
                                     <h5 style="margin-top:50px;text-align:center">12-12-2023 15h11m07s</h5>
                                 <br><br>
                                 <div class="modal-body">
-                                    <ul style="">
+                                    <ul>
                                         <li class="log"><span>* 12-12-2023 15h11m07s</span><span>Fez isso</span></li>
                                         <li class="log"><span>* 12-12-2023 15h11m07s</span><span>Fez isso</span></li>
                                         <li class="log"><span>* 12-12-2023 15h11m07s</span><span>Fez isso</span></li>
@@ -220,7 +220,7 @@ if (isset($_SESSION['bibliotecavirtual-user'])) {
             </a>
             <!-- Modal -->
             <div class="collapse fade" id="livroModal" tabindex="-1" aria-labelledby="livroModalLabel" aria-hidden="true">
-                <ul style="">
+                <ul>
                     <li data-bs-toggle="modal" data-bs-target="#livroModal12" class="cursor">12-12-2023 15h11m07s</li>
                     <!-- Modal -->
                     <div class="modal fade" id="livroModal12" tabindex="-1" aria-labelledby="livroModal12Label" aria-hidden="true">
@@ -232,7 +232,7 @@ if (isset($_SESSION['bibliotecavirtual-user'])) {
                                     <h5 style="margin-top:50px;text-align:center">12-12-2023 15h11m07s</h5>
                                 <br><br>
                                 <div class="modal-body">
-                                    <ul style="">
+                                    <ul>
                                         <li class="log"><span>* 12-12-2023 15h11m07s</span><span>Fez isso</span></li>
                                         <li class="log"><span>* 12-12-2023 15h11m07s</span><span>Fez isso</span></li>
                                         <li class="log"><span>* 12-12-2023 15h11m07s</span><span>Fez isso</span></li>
@@ -265,7 +265,7 @@ if (isset($_SESSION['bibliotecavirtual-user'])) {
             </a>
             <!-- Modal -->
             <div class="collapse fade" id="videoModal" tabindex="-1" aria-labelledby="videoModalLabel" aria-hidden="true">
-                <ul style="">
+                <ul>
                     <li><span>12-12-2023 15h11m07s</span></li>
                     <li><span>12-12-2023 15h11m07s</span></li>
                     <li><span>12-12-2023 15h11m07s</span></li>
