@@ -15,11 +15,11 @@ if (isset($_SESSION['bibliotecavirtual-admin'])) {
         include("Classes/Audio.php");
 
         $audioBook = time().$_FILES["audio"]["name"];
-        move_uploaded_file($_FILES["audio"]["tmp_name"], "Classes/Audio/files/".$audioBook);
+        move_uploaded_file($_FILES["audio"]["tmp_name"], "Classes/Audio/arquivo/".$audioBook);
 
         $audio = new Video(Funcoes::conexao());
         $audio->alterarVideo($_POST["id"], $audioBook);
-        unlink("Classes/Audio/files/".$_POST["audioatual"]);
+        unlink("Classes/Audio/arquivo/".$_POST["audioatual"]);
         header("Location: audiobook.php?q=".$_POST["id"]);
         return;
     }
@@ -164,7 +164,7 @@ if (isset($_SESSION['bibliotecavirtual-admin'])) {
             </div>
             </div>
             <br>
-            <audio src="Classes/Audio/files/<?php echo $audio["audio"]?>" style="width:100%;display:block;" controls></audio>
+            <audio src="Classes/Audio/arquivo/<?php echo $audio["audio"]?>" style="width:100%;display:block;" controls></audio>
             
             <!-- LIVROS -->
             <a href="" class="a-clean"  data-bs-toggle="modal" data-bs-target="#pdfModal">    
